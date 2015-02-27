@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.meetup.beaconsshow.EditActivity">
+
+    <TextView
+        android:id="@+id/UUIDEditLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UUID: "
+        />
+
+
+    <EditText
+        android:id="@+id/UUIDEditText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/UUIDEditLabel"
+        />
+
+    <TextView
+        android:id="@+id/MajorEditLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Major: "
+        android:layout_below="@id/UUIDEditText"
+        />
+
+    <EditText
+        android:id="@+id/MajorTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MajorEditLabel"
+
+        />
+
+
+    <TextView
+        android:id="@+id/MinorEditLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Minor: "
+        android:layout_below="@id/MajorTextBox"
+        />
+
+    <EditText
+        android:id="@+id/MinorTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MinorEditLabel"
+
+        />
+
+    <TextView
+        android:id="@+id/NameEditLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name: "
+        android:layout_below="@id/MinorTextBox"
+        />
+    <EditText
+        android:id="@+id/NameTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/NameEditLabel"
+        />
+    
+</RelativeLayout>

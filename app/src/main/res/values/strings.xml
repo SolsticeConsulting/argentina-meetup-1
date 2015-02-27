@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BeaconsShow</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_list_beacons">ListBeacons</string>
+    <string name="title_activity_store">StoreActivity</string>
+    <string name="title_activity_details">DetailsActivity</string>
+    <string name="title_activity_edit">EditActivity</string>
+</resources>

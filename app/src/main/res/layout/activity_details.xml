@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.meetup.beaconsshow.DetailsActivity">
+
+
+    <TextView
+        android:id="@+id/UUIDLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UUID: "
+
+        />
+
+    <TextView
+        android:id="@+id/UUIDTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="uuidtextbox"
+        android:layout_toEndOf="@id/UUIDLabel"
+        />
+
+    <TextView
+        android:id="@+id/MajorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Major: "
+        android:layout_below="@id/UUIDLabel"
+        />
+
+    <TextView
+        android:id="@+id/MajorTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="majorTextBox"
+        android:layout_below="@id/UUIDTextBox"
+        android:layout_toEndOf="@id/MajorLabel"
+        />
+
+
+    <TextView
+        android:id="@+id/MinorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Minor: "
+        android:layout_below="@id/MajorLabel"
+        />
+
+    <TextView
+        android:id="@+id/MinorTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MajorTextBox"
+        android:text="minorTextBox"
+        android:layout_toEndOf="@id/MinorLabel"
+        />
+
+    <TextView
+        android:id="@+id/RssLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RSSRange: "
+        android:layout_below="@id/MinorLabel"
+        />
+
+    <TextView
+        android:id="@+id/RSSRangeTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MinorTextBox"
+        android:text="rssRangeTextBox"
+        android:layout_toEndOf="@id/RssLabel"
+        />
+
+    <TextView
+        android:id="@+id/NameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name: "
+        android:layout_below="@id/RssLabel"
+        />
+    <TextView
+        android:id="@+id/NameTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RSSRangeTextBox"
+        android:text="nameTextBox"
+        android:layout_toEndOf="@id/NameLabel"
+        />
+
+</RelativeLayout>
