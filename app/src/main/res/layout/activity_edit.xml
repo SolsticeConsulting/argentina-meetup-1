@@ -67,5 +67,50 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/NameEditLabel"
         />
-    
+
+    <TextView
+        android:id="@+id/AdvertEditLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Advertising interval: "
+        android:layout_below="@id/NameTextBox"
+        />
+    <EditText
+        android:id="@+id/AdvertTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AdvertEditLabel"
+        />
+
+    <TextView
+        android:id="@+id/BrodcastEditLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Broadcasting power:  "
+        android:layout_below="@id/AdvertTextBox"
+        />
+    <EditText
+        android:id="@+id/BrodcastTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/BrodcastEditLabel"
+        />
+
+    <TextView
+        android:id="@+id/BatteryEditLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Battery:"
+        android:layout_below="@id/BrodcastTextBox"
+        />
+    <TextView
+        android:id="@+id/BatteryTextBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/BatteryEditLabel"
+        />
+
+
+
+
 </RelativeLayout>

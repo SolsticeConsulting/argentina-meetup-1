@@ -1,26 +1,24 @@
 package com.example.meetup.beaconsshow;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
-
 import com.estimote.sdk.Beacon;
-
-import org.w3c.dom.Text;
-
 
 public class DetailsActivity extends ActionBarActivity {
 
     public static final String EXTRA_BEACON = "beaconExtraData";
-
+    private Beacon beacon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        Beacon b = getIntent().getParcelableExtra(EXTRA_BEACON);
-        SetUpDetailData(b);
+        beacon = getIntent().getParcelableExtra(EXTRA_BEACON);
+        SetUpDetailData(beacon);
 
 
     }
@@ -46,8 +44,6 @@ public class DetailsActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_details, menu);
 
-
-
         return true;
     }
 
@@ -65,4 +61,11 @@ public class DetailsActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void OnEditButonClicked(View v){
+        Intent i = new Intent(this,EditActivity.class);
+        i.putExtra(EditActivity.EXTRA_BEACON_EDIT,beacon);
+        startActivity(i);
+    }
+
 }
