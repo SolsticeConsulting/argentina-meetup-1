@@ -1,14 +1,16 @@
 package com.example.meetup.beaconsshow;
 
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.connection.BeaconConnection;
 
@@ -19,12 +21,16 @@ public class EditActivity extends ActionBarActivity {
     public static final String EXTRA_BEACON_EDIT = "beaconExtraEdit";
     private BeaconConnection connection;
     private Beacon beacon;
+    private BeaconConnection.BeaconCharacteristics bChars;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
         beacon = getIntent().getParcelableExtra(EXTRA_BEACON_EDIT);
         connection = new BeaconConnection(this, beacon, createConnectionCallback());
+        progressBar = (ProgressBar) findViewById(R.id.editProgressDialog);
+        progressBar.setVisibility(View.VISIBLE);
 
     }
 
@@ -35,6 +41,8 @@ public class EditActivity extends ActionBarActivity {
             @Override public void onAuthenticated(final BeaconConnection.BeaconCharacteristics beaconChars) {
                 runOnUiThread(new Runnable() {
                     @Override public void run() {
+
+                        bChars = beaconChars;
                         EditText uuidText = (EditText) findViewById(R.id.UUIDEditText);
                         EditText majorText = (EditText) findViewById(R.id.MajorTextBox);
                         EditText minorText = (EditText) findViewById(R.id.MinorTextBox);
@@ -50,6 +58,7 @@ public class EditActivity extends ActionBarActivity {
                         broadcastText.setText(String.valueOf(beaconChars.getBroadcastingPower()));
                         batteryText.setText(String.valueOf(beaconChars.getBatteryPercent()));
                         nameText.setText(beacon.getName());
+                        progressBar.setVisibility(View.GONE);
 
                     }
                 });
@@ -79,6 +88,7 @@ public class EditActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         if (!connection.isConnected()) {
+            progressBar.setVisibility(View.VISIBLE);
             connection.authenticate();
         }
     }
@@ -112,4 +122,68 @@ public class EditActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void onBeaconSaveClick(View v){
+        EditText uuidText = (EditText) findViewById(R.id.UUIDEditText);
+        EditText majorText = (EditText) findViewById(R.id.MajorTextBox);
+        EditText minorText = (EditText) findViewById(R.id.MinorTextBox);
+        EditText advertText = (EditText) findViewById(R.id.AdvertTextBox);
+        EditText broadcastText = (EditText) findViewById(R.id.BrodcastTextBox);
+
+        if (!(uuidText.getText().toString().equals(beacon.getProximityUUID()))){
+            connection.writeProximityUuid(uuidText.getText().toString(),createWriteCallback("UUID Saved"));
+        }
+
+        if(!(majorText.getText().toString().equals(String.valueOf(beacon.getMajor())))){
+            connection.writeMajor(Integer.parseInt(majorText.getText().toString()),createWriteCallback("Major Saved"));
+        }
+
+        if(!(minorText.getText().toString().equals(String.valueOf(beacon.getMinor())))){
+            connection.writeMinor(Integer.parseInt(minorText.getText().toString()),createWriteCallback("Minor Saved"));
+        }
+
+
+        if(!(advertText.getText().toString().equals(String.valueOf(bChars.getAdvertisingIntervalMillis())))){
+            connection.writeAdvertisingInterval(Integer.parseInt(advertText.getText().toString()),createWriteCallback("Advertising Saved"));
+        }
+
+        if(!(broadcastText.getText().toString().equals(String.valueOf(bChars.getBroadcastingPower())))){
+            connection.writeBroadcastingPower(Integer.parseInt(broadcastText.getText().toString()),createWriteCallback("Broadcasting Saved"));
+        }
+
+    }
+
+
+
+    private BeaconConnection.WriteCallback createWriteCallback(final String message){
+        return new BeaconConnection.WriteCallback(){
+
+
+            @Override
+            public void onSuccess() {
+                runOnUiThread(new Runnable() {
+                                  @Override
+                                  public void run() {
+                                      Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                  }
+                              }
+                );
+
+            }
+
+            @Override
+            public void onError() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), "Unable to write value into beacon", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+            }
+        };
+
+    }
+
 }

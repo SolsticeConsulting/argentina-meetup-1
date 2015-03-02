@@ -1,9 +1,5 @@
 package com.example.meetup.beaconsshow;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.RemoteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -29,7 +25,6 @@ public class StoreActivity extends ActionBarActivity {
 
     private BeaconManager beaconManager = new BeaconManager(this);
     private static final String TAG = StoreActivity.class.getSimpleName();
-    private  BeaconListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +41,8 @@ public class StoreActivity extends ActionBarActivity {
                     public void run() {
                         if(!(rangedBeacons.isEmpty())) {
                             // Just in case if there are multiple beacons with the same uuid, major, minor.
-                            Beacon closestBeacon = null;
+                            //the beacons in the list are ordered by proximity.
+                            Beacon closestBeacon;
                             closestBeacon = rangedBeacons.get(0);
                             if (Utils.computeProximity(closestBeacon) == Utils.Proximity.IMMEDIATE ){
                                 showItem(closestBeacon);

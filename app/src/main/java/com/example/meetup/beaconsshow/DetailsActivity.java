@@ -24,6 +24,7 @@ public class DetailsActivity extends ActionBarActivity {
     }
 
     private void SetUpDetailData(Beacon b){
+
         TextView uuid = (TextView) findViewById(R.id.UUIDTextBox);
         TextView major = (TextView) findViewById(R.id.MajorTextBox);
         TextView minor = (TextView) findViewById(R.id.MinorTextBox);
