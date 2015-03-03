@@ -40,6 +40,10 @@
             android:name=".EditActivity"
             android:label="@string/title_activity_edit" >
         </activity>
+        <activity
+            android:name=".MonitoringActivity"
+            android:label="@string/title_activity_monitoring" >
+        </activity>
     </application>
 
 </manifest>

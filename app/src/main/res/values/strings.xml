@@ -7,4 +7,5 @@
     <string name="title_activity_store">StoreActivity</string>
     <string name="title_activity_details">DetailsActivity</string>
     <string name="title_activity_edit">EditActivity</string>
+    <string name="title_activity_monitoring">MonitoringActivity</string>
 </resources>

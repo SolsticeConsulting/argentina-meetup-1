@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-
 
 public class MainActivity extends ActionBarActivity {
 
@@ -51,6 +49,12 @@ public class MainActivity extends ActionBarActivity {
 
     public void onStoreClick(View v){
         Intent i = new Intent(this,StoreActivity.class);
+        startActivity(i);
+
+    }
+
+    public void onMonitoringClick(View v){
+        Intent i = new Intent(this,MonitoringActivity.class);
         startActivity(i);
 
     }

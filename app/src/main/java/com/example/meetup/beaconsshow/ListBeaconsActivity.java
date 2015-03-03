@@ -53,6 +53,7 @@ public class ListBeaconsActivity extends ActionBarActivity {
         //We can set up the scan interval to save battery and cpu cicles, since this is for show propose
         // we set it to scan immediately
         beaconManager.setBackgroundScanPeriod(TimeUnit.SECONDS.toMillis(1), 0);
+        beaconManager.setForegroundScanPeriod(TimeUnit.SECONDS.toMillis(1), 0);
 
         beaconManager.setRangingListener(new BeaconManager.RangingListener() {
             @Override public void onBeaconsDiscovered(Region region,final List<Beacon> beacons) {
