@@ -68,9 +68,14 @@ public class StoreActivity extends ActionBarActivity {
     private void showItem(Beacon beacon){
         ImageView itemImageView = (ImageView) findViewById(R.id.itemStoreImageView);
         switch (beacon.getMinor()){
-            case 60415:
-
+            case 41156:
                 itemImageView.setImageResource(R.drawable.androidwacht);
+                break;
+            case 60416:
+                itemImageView.setImageResource(R.drawable.applewacht);
+                break;
+            case 40119:
+                itemImageView.setImageResource(R.drawable.glass);
             break;
 
         }
