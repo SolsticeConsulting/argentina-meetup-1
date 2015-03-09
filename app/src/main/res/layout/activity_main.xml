@@ -6,33 +6,42 @@
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ListBeacons"
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="List Beacons"
         android:id="@+id/listBeaconsButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:onClick="onListBeaconsClick"
+        android:src="@drawable/bart_button"
+        android:scaleType="centerInside"
         />
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Store Example"
-        android:id="@+id/storeButton"
-        android:layout_below="@+id/listBeaconsButton"
-        android:layout_alignParentStart="true"
-        android:onClick="onStoreClick"
-        />
 
-    <Button
+
+    <ImageButton
         android:id="@+id/MonitoringButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/storeButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/listBeaconsButton"
         android:onClick="onMonitoringClick"
         android:text="Monitoring"
+        android:src="@drawable/lisa_button"
+        android:scaleType="centerInside"
+        />
+
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="Store Example"
+        android:id="@+id/storeButton"
+        android:layout_below="@+id/MonitoringButton"
+        android:layout_alignParentStart="true"
+        android:onClick="onStoreClick"
+        android:src="@drawable/homer_button"
+        android:scaleType="centerInside"
         />
 </RelativeLayout>

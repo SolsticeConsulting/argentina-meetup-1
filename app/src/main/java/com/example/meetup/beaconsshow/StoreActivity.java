@@ -16,6 +16,7 @@ import com.estimote.sdk.Utils;
 import java.util.List;
 
 
+
 public class StoreActivity extends ActionBarActivity {
 
 
@@ -31,6 +32,7 @@ public class StoreActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
 
+        showNoItem();
         beaconManager = new BeaconManager(this);
         beaconManager.setRangingListener(new BeaconManager.RangingListener() {
             @Override
@@ -62,20 +64,20 @@ public class StoreActivity extends ActionBarActivity {
 
     private void showNoItem(){
         ImageView itemImageView = (ImageView) findViewById(R.id.itemStoreImageView);
-        itemImageView.setImageResource(R.drawable.none);
+        itemImageView.setImageResource(R.drawable.homer_looking);
     }
 
     private void showItem(Beacon beacon){
         ImageView itemImageView = (ImageView) findViewById(R.id.itemStoreImageView);
         switch (beacon.getMinor()){
             case 41156:
-                itemImageView.setImageResource(R.drawable.androidwacht);
+                itemImageView.setImageResource(R.drawable.homer_buda);
                 break;
             case 60416:
-                itemImageView.setImageResource(R.drawable.applewacht);
+                itemImageView.setImageResource(R.drawable.homer_love);
                 break;
             case 40119:
-                itemImageView.setImageResource(R.drawable.glass);
+                itemImageView.setImageResource(R.drawable.homer_sexy);
             break;
 
         }
@@ -93,12 +95,22 @@ public class StoreActivity extends ActionBarActivity {
                 try {
                     beaconManager.startRanging(ALL_ESTIMOTE_BEACONS);
                 } catch (RemoteException e) {
-                    Toast.makeText(StoreActivity.this, "Cannot start ranging, something terrible happened",
+                    Toast.makeText(StoreActivity.this, "Cannot start ranging",
                             Toast.LENGTH_LONG).show();
                     Log.e(TAG, "Cannot start ranging", e);
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        try {
+            beaconManager.stopRanging(ALL_ESTIMOTE_BEACONS);
+        } catch (RemoteException e) {
+            Log.e(TAG, "Cannot stop", e);
+        }
     }
 
     @Override
@@ -121,5 +133,11 @@ public class StoreActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        beaconManager.disconnect();
     }
 }
