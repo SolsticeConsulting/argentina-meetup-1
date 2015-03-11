@@ -23,6 +23,15 @@ public class EditActivity extends ActionBarActivity {
     private Beacon beacon;
     private BeaconConnection.BeaconCharacteristics bChars;
     private ProgressBar progressBar;
+    private TextView uuidText;
+    private EditText majorText;
+    private EditText minorText;
+    private EditText advertText;
+    private EditText broadcastText;
+    private TextView batteryText;
+    private TextView nameText;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +41,19 @@ public class EditActivity extends ActionBarActivity {
         progressBar = (ProgressBar) findViewById(R.id.editProgressDialog);
         progressBar.setVisibility(View.VISIBLE);
 
+        uuidText = (EditText) findViewById(R.id.UUIDEditText);
+        majorText = (EditText) findViewById(R.id.MajorTextBox);
+        minorText = (EditText) findViewById(R.id.MinorTextBox);
+        advertText = (EditText) findViewById(R.id.AdvertTextBox);
+        broadcastText = (EditText) findViewById(R.id.BrodcastTextBox);
+        batteryText = (TextView) findViewById(R.id.BatteryTextBox);
+        nameText = (TextView) findViewById(R.id.NameTextBox);
+
+
     }
 
 
-
+    //Method to create a ConnectionCallback that is used when we connect to a beacon
     private BeaconConnection.ConnectionCallback createConnectionCallback() {
         return new BeaconConnection.ConnectionCallback() {
             @Override public void onAuthenticated(final BeaconConnection.BeaconCharacteristics beaconChars) {
@@ -43,13 +61,6 @@ public class EditActivity extends ActionBarActivity {
                     @Override public void run() {
 
                         bChars = beaconChars;
-                        EditText uuidText = (EditText) findViewById(R.id.UUIDEditText);
-                        EditText majorText = (EditText) findViewById(R.id.MajorTextBox);
-                        EditText minorText = (EditText) findViewById(R.id.MinorTextBox);
-                        EditText advertText = (EditText) findViewById(R.id.AdvertTextBox);
-                        EditText broadcastText = (EditText) findViewById(R.id.BrodcastTextBox);
-                        TextView batteryText = (TextView) findViewById(R.id.BatteryTextBox);
-                        TextView nameText = (TextView) findViewById(R.id.NameTextBox);
 
                         uuidText.setText(beacon.getProximityUUID());
                         majorText.setText(String.valueOf(beacon.getMajor()));
@@ -82,8 +93,6 @@ public class EditActivity extends ActionBarActivity {
         };
     }
 
-
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -98,8 +107,6 @@ public class EditActivity extends ActionBarActivity {
         connection.close();
         super.onDestroy();
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -123,12 +130,10 @@ public class EditActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    //Method to handle the Save button event
     public void onBeaconSaveClick(View v){
-        EditText uuidText = (EditText) findViewById(R.id.UUIDEditText);
-        EditText majorText = (EditText) findViewById(R.id.MajorTextBox);
-        EditText minorText = (EditText) findViewById(R.id.MinorTextBox);
-        EditText advertText = (EditText) findViewById(R.id.AdvertTextBox);
-        EditText broadcastText = (EditText) findViewById(R.id.BrodcastTextBox);
+
 
         if (!(uuidText.getText().toString().equals(beacon.getProximityUUID()))){
             connection.writeProximityUuid(uuidText.getText().toString(),createWriteCallback("UUID Saved"));
@@ -154,11 +159,9 @@ public class EditActivity extends ActionBarActivity {
     }
 
 
-
+    //Create a callback method to be used when the property write is done
     private BeaconConnection.WriteCallback createWriteCallback(final String message){
         return new BeaconConnection.WriteCallback(){
-
-
             @Override
             public void onSuccess() {
                 runOnUiThread(new Runnable() {
@@ -168,9 +171,7 @@ public class EditActivity extends ActionBarActivity {
                                   }
                               }
                 );
-
             }
-
             @Override
             public void onError() {
                 runOnUiThread(new Runnable() {
@@ -179,8 +180,6 @@ public class EditActivity extends ActionBarActivity {
                         Toast.makeText(getApplicationContext(), "Unable to write value into beacon", Toast.LENGTH_LONG).show();
                     }
                 });
-
-
             }
         };
 
