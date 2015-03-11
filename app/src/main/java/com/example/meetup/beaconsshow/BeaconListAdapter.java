@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -67,15 +66,21 @@ public class BeaconListAdapter extends BaseAdapter{
             viewHolder = (BeaconViewHolder) v.getTag();
         }
         viewHolder.UUIDTextView.setText(values.get(position).getProximityUUID());
+        viewHolder.MajorTextView.setText(String.valueOf(values.get(position).getMajor()));
+        viewHolder.MinorTextView.setText(String.valueOf(values.get(position).getMinor()));
+
         return v;
     }
 
 
    static class BeaconViewHolder{
             final TextView UUIDTextView;
-
+            final TextView MajorTextView;
+            final TextView MinorTextView;
         BeaconViewHolder(View view){
             UUIDTextView = (TextView) view.findViewById(R.id.beaconUUID);
+            MajorTextView = (TextView) view.findViewById(R.id.beaconMajor);
+            MinorTextView = (TextView) view.findViewById(R.id.beaconMinor);
         }
     }
 }

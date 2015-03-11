@@ -91,4 +91,13 @@
         android:layout_toEndOf="@id/NameLabel"
         />
 
+    <Button
+        android:id="@+id/EditButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/NameTextBox"
+        android:text="Edit"
+        android:onClick="OnEditButonClicked"
+        />
+
 </RelativeLayout>
