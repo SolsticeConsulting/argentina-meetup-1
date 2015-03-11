@@ -41,6 +41,8 @@ public class MonitoringActivity extends ActionBarActivity {
         // Default values are 5s of scanning and 25s of waiting time to save CPU cycles.
         // In order for this demo to be more responsive and immediate we lower down those values.
         beaconManager.setBackgroundScanPeriod(TimeUnit.SECONDS.toMillis(1), 0);
+
+        //We set a listener to respond to the Entered/Exited region events.
         beaconManager.setMonitoringListener(new BeaconManager.MonitoringListener() {
             @Override
             public void onEnteredRegion(Region region, List<Beacon> beacons) {
@@ -105,6 +107,7 @@ public class MonitoringActivity extends ActionBarActivity {
         super.onDestroy();
     }
 
+    //Method to post a notification in the notification bar.
     private void postNotification(String message){
 
 
